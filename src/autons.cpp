@@ -35,7 +35,8 @@ void better_example(){
 // . . .
 
 void offense_auton(){
-  chassis.pid_drive_set(24, DRIVE_SPEED, true);
+  chassis.pid_drive_set(48, DRIVE_SPEED, true);
+  chassis.pid_wait();
 
 }
 void drive_and_swing(){
@@ -108,7 +109,7 @@ void close_wp_safe(){
   wing1.set_value(true);
   chassis.pid_drive_set(25, DRIVE_SPEED, true);
   chassis.pid_wait();
-  chassis.pid_turn_set(-10_deg, -TURN_SPEED);
+  chassis.pid_turn_set(-5_deg, -TURN_SPEED);
   chassis.pid_wait();
 }
 
@@ -136,9 +137,11 @@ void skills_auton(){
   chassis.pid_wait();
   wing2.set_value(true);
   chassis.pid_wait();
-  intake.move(-127);
+  catapult.move(127);
+  catapult2.move(127);
   pros::delay(5000);
-  intake.move(0);
+  catapult.move(0);
+  catapult2.move(0);
   chassis.pid_wait();
   chassis.pid_drive_set(15, DRIVE_SPEED, true);
   chassis.pid_wait();
@@ -190,35 +193,35 @@ void skills_auton(){
 
 void offense_Triball()
 {
-  // chassis.pid_drive_set(3, DRIVE_SPEED, true);
-  // //drive forwards 
-  // intake.move(127);
-  // //intake tribal
-  // chassis.pid_wait();
-  // chassis.pid_drive_set(-32, DRIVE_SPEED, true);
-  // chassis.pid_wait();
-  // drive_and_swing();
-  // chassis.pid_wait();
-  // wing1.set_value(true);
-  // chassis.pid_wait();
-  // chassis.pid_drive_set(-5, DRIVE_SPEED, true);
-  // chassis.pid_wait();
-  // chassis.pid_turn_set(-100_deg, TURN_SPEED);
-  // chassis.pid_wait();
-  // wing1.set_value(!true);
-  // chassis.pid_drive_set(-12, DRIVE_SPEED, true);
-  // chassis.pid_wait();
-  // chassis.pid_swing_set(ez::LEFT_SWING, -60_deg, 60);
-  // chassis.pid_wait();
-  // chassis.pid_drive_set(-12, DRIVE_SPEED, true);
-  // chassis.pid_wait();
+  chassis.pid_drive_set(3, DRIVE_SPEED, true);
+  //drive forwards 
+  intake.move(127);
+  //intake tribal
+  chassis.pid_wait();
+  chassis.pid_drive_set(-32, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  drive_and_swing();
+  chassis.pid_wait();
+  wing1.set_value(true);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-5, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-100_deg, TURN_SPEED);
+  chassis.pid_wait();
+  wing1.set_value(!true);
+  //chassis.pid_drive_set(-12, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_swing_set(ez::LEFT_SWING, -80_deg, 60);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-18, DRIVE_SPEED, true);
+  chassis.pid_wait();
   
   //testing triball4
-  intake.move(127);
-  chassis.pid_drive_set(49, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(160_deg, TURN_SPEED);  
-  chassis.pid_wait();
+  // intake.move(127);
+  // chassis.pid_drive_set(49, DRIVE_SPEED, true);
+  // chassis.pid_wait();
+  // chassis.pid_turn_set(160_deg, TURN_SPEED);  
+  // chassis.pid_wait();
   // chassis.pid_swing_set(ez::LEFT_SWING, -12_deg, 110, true);
   // chassis.pid_drive_set(-10, DRIVE_SPEED, true);
   //chassis.pid_wait();
@@ -279,8 +282,9 @@ void drive_example() {
   //far_wp();
   //close_wp();
   //close_wp_safe();
-  skills_auton();
-  //offense_Triball();
+  //skills_auton();
+  offense_Triball();
+  //offense_auton();
 
   //close_wp_safe();
   // The first parameter is target inches
