@@ -145,8 +145,8 @@ void autonomous() {
 pros::Motor intake(20);
 pros::ADIDigitalOut wing1('A', false);
 pros::ADIDigitalOut wing2('B', false); 
-pros::Motor catapult(20);
-pros::Motor catapult2(20);
+pros::Motor catapult(2);
+pros::Motor catapult2(8);
 
 bool wing1_on = false;
 bool wing2_on = false;
@@ -157,12 +157,12 @@ void opcontrol() {
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
   while (true) {
-    if(master.get_digital(DIGITAL_B)){
-      catapult.move(-127);
-      catapult2.move(-127);
-    }else if (master.get_digital(DIGITAL_L1)){
-      catapult.move(127);
-      catapult2.move(127);
+    if(master.get_digital(DIGITAL_DOWN)){
+      catapult.move(90);
+      catapult2.move(-90);
+    }else if (master.get_digital(DIGITAL_LEFT)){
+      catapult.move(-90);
+      catapult2.move(90);
     }else{
       catapult.move(0);
       catapult2.move(0);
