@@ -160,9 +160,9 @@ void skills_auton(){
   //chassis.pid_wait();
   //chassis.pid_drive_set(-25, DRIVE_SPEED, true);
   //chassis.pid_wait();
-  catapult2.move(-90);
-  catapult.move(90);
-  pros::delay(30000);
+  // catapult2.move(-90);
+  // catapult.move(90);
+  // pros::delay(30000);
   //catapult.move(127);
   //catapult2.move(127);
   //pros::delay(5000);
