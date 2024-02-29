@@ -5,22 +5,27 @@
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
-
+//right back - 17
+//front left - 15
+//middle left - 14
+//front right - 13
+//left back - 20
+//middle right - 11
 // Chassis constructor
 ez::Drive chassis (
   // Left Chassis Ports (negative port will reverse it!)
   //   the first port is used as the sensor
-  {-12, -9, 10, 4}
+  {15, 14, -20, -12}
 
   // Right Chassis Ports (negative port will reverse it!)
   //   the first port is used as the sensor
-  ,{13, 21, -3, -19}
+  ,{-13, -11, 17, 18}
 
   // IMU Port
-  ,1
+  ,16
 
   // Wheel Diameter (Remember, 4" wheels without screw holes are actually 4.125!)
-  ,2.75
+  ,3.25
 
   // Cartridge RPM
   ,600
@@ -29,7 +34,7 @@ ez::Drive chassis (
   // eg. if your drive is 84:36 where the 36t is powered, your RATIO would be 84/36 which is 2.333
   // eg. if your drive is 60:36 where the 36t is powered, your RATIO would be 60/36 which is 0.6
   // eg. if your drive is 36:60 where the 60t is powered, your RATIO would be 36/60 which is 0.6
-  ,1.0
+  ,1.333
 );
 
 
@@ -142,7 +147,7 @@ void autonomous() {
  */
 
 
-pros::Motor intake(20);
+pros::Motor intake(7);
 pros::ADIDigitalOut wing1('A', false);
 pros::ADIDigitalOut wing2('B', false); 
 pros::Motor catapult(2);
@@ -157,12 +162,12 @@ void opcontrol() {
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
   while (true) {
-    if(master.get_digital(DIGITAL_B)){
-      catapult.move(-127);
-      catapult2.move(-127);
-    }else if (master.get_digital(DIGITAL_L1)){
-      catapult.move(127);
-      catapult2.move(127);
+    if(master.get_digital(DIGITAL_DOWN)){
+      catapult.move(90);
+      catapult2.move(-90);
+    }else if (master.get_digital(DIGITAL_LEFT)){
+      catapult.move(-90);
+      catapult2.move(90);
     }else{
       catapult.move(0);
       catapult2.move(0);
