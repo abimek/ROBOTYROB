@@ -157,12 +157,12 @@ void opcontrol() {
   chassis.drive_brake_set(MOTOR_BRAKE_COAST);
 
   while (true) {
-    if(master.get_digital(DIGITAL_DOWN)){
-      catapult.move(90);
-      catapult2.move(-90);
-    }else if (master.get_digital(DIGITAL_LEFT)){
-      catapult.move(-90);
-      catapult2.move(90);
+    if(master.get_digital(DIGITAL_B)){
+      catapult.move(-127);
+      catapult2.move(-127);
+    }else if (master.get_digital(DIGITAL_L1)){
+      catapult.move(127);
+      catapult2.move(127);
     }else{
       catapult.move(0);
       catapult2.move(0);

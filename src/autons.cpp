@@ -63,11 +63,12 @@ void far_wp() {
 void close_wp(){
   intake.move(127);
   wing1.set_value(true);
+  pros::delay(500);
+  wing1.set_value(false);
   chassis.pid_drive_set(50, DRIVE_SPEED, true);
   chassis.pid_wait();
   // intake.move(127);
   // chassis.pid_wait();
-  wing1.set_value(false);
   chassis.pid_drive_set(-29, DRIVE_SPEED, true);
   chassis.pid_wait();
   chassis.pid_swing_set(ez::RIGHT_SWING, 140_deg, -SWING_SPEED, 10);
@@ -94,6 +95,46 @@ void close_wp(){
   // chassis.pid_wait();
 }
 
+void close_wp_2(){
+  intake.move(127);
+  wing1.set_value(true);
+  pros::delay(500);
+  wing1.set_value(false);
+  chassis.pid_drive_set(50, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  // intake.move(127);
+  // chassis.pid_wait();
+  chassis.pid_drive_set(-31, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_swing_set(ez::RIGHT_SWING, 140_deg, -SWING_SPEED, 10);
+  chassis.pid_wait();
+  wing2.set_value(true);
+  chassis.pid_swing_set(ez::RIGHT_SWING, 85_deg, 60, 8);
+  chassis.pid_wait();
+  wing2.set_value(false);
+  chassis.pid_drive_set(25, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(70_deg, TURN_SPEED);
+  chassis.pid_wait();
+  intake.move(-127);
+  //wing1.set_value(true);
+  chassis.pid_drive_set(10, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  pros::delay(1000);
+  intake.move(0);
+  chassis.pid_drive_set(-17, 110, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(95_deg, TURN_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-32, 110, true);
+  chassis.pid_wait();
+  intake.move(-127);
+  wing2.set_value(true);
+  pros::delay(2000);
+  // chassis.pid_turn_set(95_deg, TURN_SPEED);
+  // chassis.pid_wait();
+}
+
 void close_wp_safe(){
   chassis.pid_drive_set(-10, DRIVE_SPEED, true);
   chassis.pid_wait();
@@ -108,8 +149,6 @@ void close_wp_safe(){
   intake.move(-127);
   wing1.set_value(true);
   chassis.pid_drive_set(25, DRIVE_SPEED, true);
-  chassis.pid_wait();
-  chassis.pid_turn_set(-5_deg, -TURN_SPEED);
   chassis.pid_wait();
 }
 
@@ -143,7 +182,11 @@ void skills_auton(){
   chassis.pid_wait();
   chassis.pid_drive_set(-20, 127, true);
   chassis.pid_wait();
-  chassis.pid_drive_set(17, DRIVE_SPEED, true);
+  chassis.pid_drive_set(5, 110, true);
+  chassis.pid_wait();
+  chassis.pid_drive_set(-15, 110, true);
+  chassis.pid_wait();
+  chassis.pid_drive_set(22, DRIVE_SPEED, true);
   chassis.pid_wait();
   chassis.pid_turn_set(-75_deg, TURN_SPEED);
   chassis.pid_wait();
@@ -151,7 +194,24 @@ void skills_auton(){
   chassis.pid_wait();
   catapult2.move(-90);
   catapult.move(90);
-  pros::delay(30000);
+  pros::delay(500000);
+  //pros::delay(500);
+  //catapult2.move(0);
+  //catapult.move(0);
+  /*
+  chassis.pid_turn_set(-43, TURN_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(6, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-80, TURN_SPEED);
+  chassis.pid_wait();
+  chassis.pid_drive_set(150, DRIVE_SPEED, true);
+  chassis.pid_wait();
+  chassis.pid_turn_set(-160_deg, TURN_SPEED, true);
+  chassis.pid_wait();*/
+
+
+
   //chassis.pid_turn_set(-63_deg, TURN_SPEED);
   //chassis.pid_wait();
   //chassis.pid_drive_set(15, DRIVE_SPEED, true);
@@ -307,9 +367,10 @@ void offense_Triball()
 void drive_example() {
   //far_wp();
   //close_wp();
+  close_wp_2();
   //close_wp_safe();
   //skills_auton();
-  skills_auton();
+  //skills_auton();
   //offense_auton();
 
   //close_wp_safe();
